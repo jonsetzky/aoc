@@ -49,7 +49,12 @@ fn main() {
             .output()
             .expect("Failed to execute command");
 
-        println!("{}", String::from_utf8_lossy(&output.stdout));
+        if output.status.success() {
+            println!("{}", String::from_utf8_lossy(&output.stdout));
+        } else {
+            println!("{}", String::from_utf8_lossy(&output.stderr));
+        }
+
         return;
     }
 
