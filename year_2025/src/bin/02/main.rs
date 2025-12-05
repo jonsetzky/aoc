@@ -6,10 +6,12 @@ fn is_invalid_id(id: i64) -> bool {
 
     while exp <= (dcount / 2) {
         // ! only sequences that are repeated twice count
-        if dcount / exp > 2 {
-            exp += 1;
-            continue;
-        }
+        // ! uncomment this to get part 1's answer
+        //if dcount / exp > 2 {
+        //    exp += 1;
+        //    continue;
+        //}
+
         // skip digit sequences that cant possibly add up to dcount
         if dcount % exp != 0 {
             exp += 1;
