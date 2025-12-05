@@ -5,3 +5,4 @@ edition = "2024"
 default-run = "year_2025"
 
 [dependencies]
+test-case = "3.3.1"
