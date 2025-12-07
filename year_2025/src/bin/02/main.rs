@@ -54,6 +54,8 @@ fn main() {
     let input_string = read_to_string("src/bin/02/input.txt").expect("Failed to read file");
     let mut sum = 0;
 
+    let start = std::time::Instant::now();
+
     for value in input_string.split(',').map(|s| {
         s.split("-")
             .map(|x| {
@@ -69,8 +71,10 @@ fn main() {
             sum += id;
         });
     }
+    let duration = start.elapsed();
 
     println!("Sum: {}", sum);
+    println!("Time elapsed: {:?}", duration);
 }
 
 #[cfg(test)]

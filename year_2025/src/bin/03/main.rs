@@ -62,13 +62,25 @@ fn main() {
     let mut sum = 0;
     let mut sum_v2 = 0;
 
+    let start = std::time::Instant::now();
+
     for line in input_string.lines() {
         sum += find_max_joltage(line);
+    }
+
+    let duration = start.elapsed();
+    let start_v2 = std::time::Instant::now();
+
+    for line in input_string.lines() {
         sum_v2 += find_max_joltage_v2(line).parse::<u64>().unwrap_or(0);
     }
 
+    let duration_v2 = start_v2.elapsed();
+
     println!("Sum: {}", sum);
     println!("Sum v2: {}", sum_v2);
+    println!("Time elapsed: {:?}", duration);
+    println!("Time elapsed V2: {:?}", duration_v2);
 }
 
 #[cfg(test)]

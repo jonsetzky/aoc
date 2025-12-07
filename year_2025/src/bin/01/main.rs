@@ -33,6 +33,8 @@ fn rotate_dial(dial: i32, value: i32) -> (i32, i32) {
 fn main() {
     let input_string = read_to_string("src/bin/01/input.txt").expect("Failed to read file");
 
+    let start = std::time::Instant::now();
+
     let mut dial = 50;
     let mut zero_count = 0;
     let mut zero_count_2 = 0;
@@ -58,7 +60,10 @@ fn main() {
         dial = new_dial
     }
 
+    let duration = start.elapsed();
+
     println!("Final dial position: {}", dial);
     println!("Number of times dial stopped at 0: {}", zero_count);
     println!("Number of times dial was at 0: {}", zero_count_2);
+    println!("Time elapsed: {:?}", duration);
 }
