@@ -1,4 +1,4 @@
-use std::fs::read_to_string;
+use std::{cmp::min, fs::read_to_string};
 
 fn find_max_joltage(bank: &str) -> i64 {
     for n in (1..=9).rev() {
@@ -24,19 +24,51 @@ fn find_max_joltage(bank: &str) -> i64 {
         .unwrap_or(0)
 }
 
-fn find_max_joltage_v2(bank: &str) -> i64 {
-    987654321111i64
+fn find_max_joltage_v2(bank: &str) -> String {
+    let mut out = String::new();
+    let max_len = min(12, bank.len());
+
+    // bank.get(0..(bank.len() - max_len + 1))
+    // gets all possible characters that the first character can be
+
+    let mut l = 0;
+    let mut r = bank.len();
+
+    for _ in 0..12 {
+        let possible = bank.get(l..(r - max_len + 1)).unwrap();
+
+        let max = possible.chars().max().unwrap();
+        let max_index = possible.chars().position(|c| c == max).unwrap() + l;
+
+        // println!(
+        //     "{}, max {} ({})",
+        //     bank.get(l..(r - max_len + 1)).unwrap(),
+        //     max,
+        //     max_index
+        // );
+
+        l = max_index + 1;
+        r += 1;
+        out.push(max);
+    }
+
+    // println!("Final: {}", out);
+
+    return out;
 }
 
 fn main() {
     let input_string = read_to_string("src/bin/03/input.txt").expect("Failed to read file");
     let mut sum = 0;
+    let mut sum_v2 = 0;
 
     for line in input_string.lines() {
         sum += find_max_joltage(line);
+        sum_v2 += find_max_joltage_v2(line).parse::<u64>().unwrap_or(0);
     }
 
     println!("Sum: {}", sum);
+    println!("Sum v2: {}", sum_v2);
 }
 
 #[cfg(test)]
