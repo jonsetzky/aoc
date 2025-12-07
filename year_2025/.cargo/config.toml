@@ -1,2 +1,10 @@
 [alias]
 solve = "run -- solve"
+
+[build]
+rustflags = ["-C", "link-arg=-fuse-ld=lld", "-Z", "threads=8"]
+
+# can be further optimized with:
+#rustc-wrapper = "/path/to/sccache"
+# this however should be placed in global config (~/.cargo/config.toml)
+# to avoid committing it into VCS
