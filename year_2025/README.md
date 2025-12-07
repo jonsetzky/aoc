@@ -10,3 +10,4 @@
 | 3   | 1     | 228.1µs         |                                                                            |
 |     | 2     | 934.7µs         | completely different approach than part 1                                  |
 | 4   | 1     | 20.5275ms       | original solution took 9 seconds but switching to hashmap fixed it         |
+|     | 2     | 42.0845ms       |                                                                            |
